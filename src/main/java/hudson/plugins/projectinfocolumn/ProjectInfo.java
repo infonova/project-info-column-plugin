@@ -1,5 +1,7 @@
 package hudson.plugins.projectinfocolumn;
 
+import org.kohsuke.stapler.DataBoundConstructor;
+
 import hudson.Extension;
 import hudson.model.Describable;
 import hudson.model.Descriptor;
@@ -40,6 +42,11 @@ public class ProjectInfo implements Describable<ProjectInfo> {
         this.xpath = xpath;
     }
 
+    @DataBoundConstructor
+    public ProjectInfo(String title, String xpath) {
+        this(null, null, title, xpath);
+    }
+
     public String getValue() {
         return value;
     }
@@ -76,8 +83,7 @@ public class ProjectInfo implements Describable<ProjectInfo> {
 
     @Override
     public Descriptor<ProjectInfo> getDescriptor() {
-        // TODO Auto-generated method stub
-        return null;
+        return new DescriptorImpl();
     }
 
     @Extension
