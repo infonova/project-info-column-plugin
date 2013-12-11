@@ -1,0 +1,24 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+    xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+    xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+
+    <f:entry title="project infos" field="projectInfos">
+        <j:repeatable noAddButton="false" var="inf">
+        <table width="100%">
+            <f:entry title="${%ProjectInfoColumnTitle}" field="inf.title">
+               <f:textbox />
+            </f:entry>
+            <f:entry title="${%ProjectInfoColumnXPathExpression}" field="inf.xpath">
+               <f:textbox />
+            </f:entry>
+            <f:entry>
+            <div align="right">
+                <input type="button" class="repeatable-add show-if-last" />
+                <input type="button" value="delete this" class="repeatable-delete show-if-not-only" style="margin-left: 1em;" />
+            </div>
+            </f:entry>
+        </table>
+        </j:repeatable>
+    </f:entry>
+</j:jelly>

@@ -1,0 +1,12 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <j:if test="${it.hasProjectInfo()}">
+        <table style="margin-top: 1em; margin-left:1em;">
+            <j:forEach var="infoEntry" items="${it.getProjectInfoAction().getProjectInfos()}">
+                <t:summary icon="${infoEntry.icon}">
+                    <b>${infoEntry.title}</b>
+                    ${infoEntry.value}
+                </t:summary>
+            </j:forEach>
+        </table>
+    </j:if>
+</j:jelly>
