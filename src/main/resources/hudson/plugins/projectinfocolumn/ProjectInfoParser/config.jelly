@@ -12,6 +12,9 @@
             <f:entry title="${%ProjectInfoColumnXPathExpression}" field="xpath">
                <f:textbox />
             </f:entry>
+            <f:entry title="${%ProjectInfoColumnIcon}" field="icon">
+               <f:select />
+            </f:entry>
             <f:entry>
               <div align="right">
                 <input type="button" value="Add" class="repeatable-add show-if-last" />

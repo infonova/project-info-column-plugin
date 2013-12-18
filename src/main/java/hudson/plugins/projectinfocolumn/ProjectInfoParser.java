@@ -11,9 +11,8 @@ import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,27 +52,23 @@ public class ProjectInfoParser extends Recorder {
 
         for (ProjectInfo info : projectInfos) {
             try {
-                info.setValue(findValueByXpathInFile(info.getXpath(), new File(build.getWorkspace().getRemote(),
-                        "pom.xml")));
+                InputStream inputStream = build.getWorkspace().child("pom.xml").read();
+                info.setValue(findValueByXpathInFile(info.getXpath(), inputStream));
             } catch (Exception e) {
                 e.printStackTrace(console);
             }
         }
-        // @formatter:off
-        build.addAction(new ProjectInfoAction(
-            new ProjectInfo("value", ProjectInfo.Icons.R6VERSION.getValue(), "r6-version", null),
-            new ProjectInfo("value", ProjectInfo.Icons.R6VERSION.getValue(), "blablatitle", null)));
-        // @formatter:on
+        build.addAction(new ProjectInfoAction(this.projectInfos.toArray(new ProjectInfo[0])));
 
         return true;
     }
 
-    private String findValueByXpathInFile(String xpath, File file) throws Exception {
+    private String findValueByXpathInFile(String xpath, InputStream inputStream) throws Exception {
 
         XPathFactory xPathFactory = XPathFactory.newInstance();
         XPath xpathInstance = xPathFactory.newXPath();
 
-        String fileContent = IOUtils.toString(new FileInputStream(file));
+        String fileContent = IOUtils.toString(inputStream);
 
         String ns = StringUtils.substringBetween(fileContent, "xmlns=\"", "\"");
 
