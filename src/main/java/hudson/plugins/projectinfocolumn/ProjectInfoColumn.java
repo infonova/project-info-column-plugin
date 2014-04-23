@@ -30,9 +30,11 @@ public class ProjectInfoColumn extends ListViewColumn {
         }
 
         ProjectInfoAction projectInfoAction = job.getLastCompletedBuild().getAction(ProjectInfoAction.class);
-        for (ProjectInfo info : projectInfoAction.getProjectInfos()) {
-            if (this.title.equalsIgnoreCase(info.getTitle())) {
-                return info.getValue() == null ? StringUtils.EMPTY : info.getValue();
+        if (projectInfoAction != null) {
+            for (ProjectInfo info : projectInfoAction.getProjectInfos()) {
+                if (this.title.equalsIgnoreCase(info.getTitle())) {
+                    return info.getValue() == null ? StringUtils.EMPTY : info.getValue();
+                }
             }
         }
         return StringUtils.EMPTY;
