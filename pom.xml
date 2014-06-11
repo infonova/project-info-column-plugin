@@ -21,8 +21,8 @@
     </properties>
 
     <scm>
-        <connection>scm:svn:http://grzsvn01.infonova.at/ise/tools/jenkins/plugins/project-info-column-plugin/trunk</connection>
-        <developerConnection>scm:svn:http://grzsvn01.infonova.at/ise/tools/jenkins/plugins/project-info-column-plugin/trunk</developerConnection>
+        <connection>scm:git:ssh://git.infonova.at:29418/jenkins/plugins/project-info-column-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git.infonova.at:29418/jenkins/plugins/project-info-column-plugin.git</developerConnection>
         <url>http://grzsvn01.infonova.at/ise/tools/jenkins/plugins/project-info-column-plugin/trunk</url>
     </scm>
 
