@@ -10,7 +10,7 @@
 
     <groupId>com.infonova.jenkins.plugins</groupId>
     <artifactId>project-info-column-plugin</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <name>project-info-column-plugin</name>
 
