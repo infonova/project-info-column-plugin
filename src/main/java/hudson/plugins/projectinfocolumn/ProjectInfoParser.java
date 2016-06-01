@@ -52,7 +52,13 @@ public class ProjectInfoParser extends Recorder {
 
         for (ProjectInfo info : projectInfos) {
             try {
-                InputStream inputStream = build.getWorkspace().child("pom.xml").read();
+                String pomfile = "pom.xml";
+
+                if(info != null && info.getPomfile() != null && !StringUtils.isBlank(info.getPomfile())) {
+                    pomfile = info.getPomfile();
+                }
+
+                InputStream inputStream = build.getWorkspace().child(pomfile).read();
                 info.setValue(findValueByXpathInFile(info.getXpath(), inputStream));
             } catch (Exception e) {
                 e.printStackTrace(console);

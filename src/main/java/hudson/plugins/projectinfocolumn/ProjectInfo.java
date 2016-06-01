@@ -16,6 +16,7 @@ public class ProjectInfo implements Describable<ProjectInfo> {
     private String icon;
     private String title;
     private String xpath;
+    private String pomfile;
 
     public enum Icons {
         R6VERSION("/plugin/project-info-column-plugin/images/IR6.png", "IR6"),
@@ -45,17 +46,17 @@ public class ProjectInfo implements Describable<ProjectInfo> {
     }
 
 
-    public ProjectInfo(String value, String icon, String title, String xpath) {
-        super();
+    public ProjectInfo(String value, String icon, String title, String xpath, String pomfile) {
         this.value = value;
         this.icon = StringUtils.isBlank(icon) ? Icons.DEFAULT.getValue() : icon;
         this.title = title;
         this.xpath = xpath;
+        this.pomfile = StringUtils.isBlank(pomfile) ? "pom.xml" : pomfile;;
     }
 
     @DataBoundConstructor
-    public ProjectInfo(String title, String xpath, String icon) {
-        this(null, icon, title, xpath);
+    public ProjectInfo(String title, String xpath, String icon, String pomfile) {
+        this(null, icon, title, xpath, pomfile);
     }
 
     public String getValue() {
@@ -90,6 +91,14 @@ public class ProjectInfo implements Describable<ProjectInfo> {
 
     public void setXpath(String xpath) {
         this.xpath = xpath;
+    }
+
+    public String getPomfile() {
+        return pomfile;
+    }
+
+    public void setPomfile(String pomfile) {
+        this.pomfile = pomfile;
     }
 
     @Override
